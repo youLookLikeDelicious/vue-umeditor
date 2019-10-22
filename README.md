@@ -64,5 +64,5 @@
                                                                   
 > window.UM.replaceImageUrl(Array ulr)  // 替换blob地址 
 #### 效果图
-![alt text](http://m.qpic.cn/psb?/V11HvW1h3vJkOa/M0eculcpPzLVbx5HIyTVLGfQHP2XhvLXAZV*Mg2VHGI!/b/dD4BAAAAAAAA&bo=6wNwAQAAAAADB7s!&rf=viewer_4)
-![alt text](http://m.qpic.cn/psb?/V11HvW1h3vJkOa/mqWQLU7mbS5.GRXMh85jHaoqQdzYR5SojUnUYyUpZgU!/b/dLgAAAAAAAAA&bo=OARiAgAAAAADB34!&rf=viewer_4)
+![alt text](http://i.caigoubao.cc/626561/Screenshot_1.png)
+![alt text](http://i.caigoubao.cc/626561/Screenshot_2.png)
