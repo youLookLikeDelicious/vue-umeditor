@@ -8,7 +8,7 @@
 ```
 #### 
 > laravel后台示范（引用intervention/image包）  
-[代码地址](https://github.com/youLookLikeDelicious/blog1997-api/blob/master/app/Http/Controllers/Upload/UploadController.php")
+[代码地址](https://github.com/youLookLikeDelicious/blog1997-api/blob/master/app/Http/Controllers/Upload/UploadController.php)
     
 ###使用
 > 以nuxt为例   
@@ -40,7 +40,9 @@
     height: 富文本的高度，默认300px
     width: 富文本的宽度，默认100%
 ```
-> 5、如果你想绑定富文本的内容，可以在mounted()方法中添加如下代码(也可以使用dispatchEvetn，需要修改源码😔，ps：这种方式不太保险，提交的时候最好使用getContent()方法获取富文本的内容)
+> 5、如果你想绑定富文本的内容，可以在mounted()方法中添加如下代码(也可以使用dispatchEvetn，需要修改源码😔）  
+> ps：这种方式不是真正的数据绑定，提交的时候最好使用getContent()方法获取富文本的内容)  
+> 也想过监听onChange事件，但是无效  
 ```
     this.UM.body.addEventListener('input', () => {
           this.umContent = this.UM.getContent()
@@ -53,7 +55,14 @@
 > 提示、如果你不使用数据绑定，可直接使用submit按钮提交form表单，editor会自动上传图片，并替blob连接，但需要配置图片上传的地址  
   window.UMEDITOR_CONFIG['imageUrl'] = 'http://****.com/upload/upload-image';   
 >
-> 你也可以手动上传图片，手动替换blob连接
-> 
+> 你也可以手动上传图片，手动替换blob连接     
+>
+> window.UM.getFileFormDate()  // 获取formdate  
+>> formdata结构  
+>> formData.append('upfile[]', input.file) formData.append('id[]', id)   
+>> id 属性是返回数组的索引列表         
+                                                                  
+> window.UM.replaceImageUrl(Array ulr)  // 替换blob地址 
 #### 效果图
 ![alt text](http://m.qpic.cn/psb?/V11HvW1h3vJkOa/M0eculcpPzLVbx5HIyTVLGfQHP2XhvLXAZV*Mg2VHGI!/b/dD4BAAAAAAAA&bo=6wNwAQAAAAADB7s!&rf=viewer_4)
+![alt text](http://m.qpic.cn/psb?/V11HvW1h3vJkOa/mqWQLU7mbS5.GRXMh85jHaoqQdzYR5SojUnUYyUpZgU!/b/dLgAAAAAAAAA&bo=OARiAgAAAAADB34!&rf=viewer_4)
