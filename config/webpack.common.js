@@ -8,7 +8,7 @@ module.exports = {
     // 入口js文件的位置
     entry: "./src/index.js",
     output: {
-        path: '/dist/',
+        path: path.resolve(__dirname, './dist/'),
         filename: "bundle.js",
         // publicPath: "/dist/"		// 在浏览器地址中输入的
     },
