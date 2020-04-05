@@ -51,6 +51,6 @@
     "/lib"
   ],
   "dependencies": {
-    "jquery": "^2.2.4"
+    "jquery": "^3.4.1"
   }
 }
