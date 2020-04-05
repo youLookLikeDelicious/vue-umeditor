@@ -1,4 +1,0 @@
-1、实例化编译器之前，设置window.UMEDITOR_CONFIG['imagePath'] = "/";
-2、设置 imageUp.php $config['savePaht'] = 绝对路径;
-
-//其图片的上传的表单域的名称为upfile

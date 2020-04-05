@@ -2,16 +2,41 @@ export default {
     name: 'umeditor',
     props: {
         nameAttr: {
-            default: 'xy_um_editor'
+            type: String,
+            default () {
+                return 'xy_um_editor'
+            }
         },
         initMessage: {
-            default: 'xy-um-editor'
+            type: String,
+            default () {
+                return '@blog1997/um-editor'
+            }
         },
         height: {
-            default: '300px'
+            type: String,
+            default () {
+                return '300px'
+            }
         },
         width: {
-            default: '100%'
+            type: String,
+            default () {
+                return '100%'
+            }
+        },
+        toolbar: {
+            type: [Array, String],
+            default () {
+                return ''
+            }
+        },
+        uploadUrl: {
+            type: String,
+            default () {
+                return ''
+                // return 'http://www.blog1997.com:88/api/admin/article-upload-image'
+            }
         }
     },
     data() {
@@ -36,23 +61,27 @@ export default {
         })
     },
     mounted () {
-        //window.UMEDITOR_CONFIG['imageUrl'] = '<C("UEDITOR_PATH")."php/imageUp.php"?>';
         if (!window.UMEDITOR_CONFIG) {
             window.UMEDITOR_CONFIG = {}
         }
         window.UMEDITOR_CONFIG['imagePath'] = "/";
-        window.UMEDITOR_CONFIG['imageUrl'] = 'http://blog1997.com/api/upload/upload-image';
+        window.UMEDITOR_CONFIG['imageUrl'] = this.uploadUrl;
 
-        //实例化编辑器
-        this.UM = UM.getEditor(this.umId,{
+        const umConfig = {
             initialFrameWidth: this.width,
             autoHeightEnabled: true,
-            autoFloatEnabled: true,
-            // toolbar: ['emotion']
-        });
+            autoFloatEnabled: true
+        }
+
+        if (this.toolbar) {
+            umConfig.toolbar = this.toolbar
+        }
+        //实例化编辑器
+        this.UM = UM.getEditor(this.umId, umConfig)
+
         UM.umId = this.umId
         UM.areaName = this.nameAttr
         this.UM.setContent(this.initMessage)
-        this.$emit('reciveUM', this.UM)
+        this.$emit('receiveUM', this.UM)
     }
 }

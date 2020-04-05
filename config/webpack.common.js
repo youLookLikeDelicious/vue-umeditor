@@ -3,12 +3,13 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     // 入口js文件的位置
-    entry: "./src/index.js",
+    entry: ["@babel/polyfill", "./src/index.js"],
     output: {
-        path: path.resolve(__dirname, './dist/'),
+        path: path.resolve(__dirname, '../dist/'),
         filename: "bundle.js",
         // publicPath: "/dist/"		// 在浏览器地址中输入的
     },
@@ -25,12 +26,17 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$|.css$/,
+                test: /\.(sa|sc|c)ss$/i,
                 use: [
+                    // {
+                    //     loader: MiniCssExtractPlugin.loader
+                    // },
+                    /**/{
+                        loader: 'style-loader',
+                        options: { attributes: { class: 'webpack-style' } }
+                    }  ,//*/ 
                     {
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader'
+                        loader: 'css-loader',
                     }, {
                         loader: 'sass-loader'
                     }
@@ -45,10 +51,22 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.html$/i,
+                loader: 'html-loader',
+                options: {
+                    minimize: true,
+                    interpolate: true
+                },
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|otf|svg)$/,
                 use: [
                     {
                         loader: 'file-loader?name=./font/[name].[ext]'
+                        // loader: 'url-loader',
+                        // options: {
+                        //     fallback: require.resolve('file-loader'),
+                        // }
                     }
                 ]
             }
@@ -61,7 +79,7 @@ module.exports = {
         // HTML模板的相关设置
         new HtmlWebpackPlugin({
             title: 'Vue-umeditor',
-            template: './dist/index.html',
+            template: './src/index.html',
             filename: 'index.html'
         }),
 		//  静态资源的设置
@@ -70,6 +88,10 @@ module.exports = {
                 from: './src/static/plugins',	// 相对于项目根目录
                 to: 'plugins/'
                 // flatten: true
+            },
+            {
+                from: './src/static/style',	// 相对于项目根目录
+                to: 'style/'
             }
         ]),
     ],
@@ -85,12 +107,16 @@ module.exports = {
                 compress: true,
                 warning: false
             }
-        })]
+        })],
+        splitChunks: {
+            chunks: 'all',
+        }
     },
     devServer: {
-        contentBase: path.resolve('../src/static'),
+        // contentBase: path.resolve('../src/static'),
         // compress: true,
-        // port: 8080
+        // port: 8080,
+        disableHostCheck: true
     },
     // 定义变量
     resolve: {
