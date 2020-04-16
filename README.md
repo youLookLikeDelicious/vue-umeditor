@@ -53,3 +53,5 @@ new Vue({
 [vue-umeditor演示地址](https://www.chaosxy.com/archives/84554c2.html)
 
 *如果有什么意见或是建议，欢迎留言讨论*
+
+[issue](https://github.com/youLookLikeDelicious/vue-umeditor)
