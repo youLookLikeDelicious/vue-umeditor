@@ -1,9 +1,0 @@
-﻿.edui-dialog-code .code-type{height: 35px; width: 100%; line-height: 35px; border-bottom: 1px solid #eee;}
-.edui-dialog-code .code-type select {outline: transparent;}
-.edui-dialog-code .code-content{margin: 2px auto 0; padding-top:7px;width: 90%;}
-.edui-dialog-code .code-content textarea{width: 98%; height: 320px; margin: 12px auto; border: 1px solid #c6c6c6; outline: transparent}
-.edui-editor-body pre {
-    background-color: #f5f5f5;
-    padding: 7px 3px;
-    border-radius: 5px;
-}

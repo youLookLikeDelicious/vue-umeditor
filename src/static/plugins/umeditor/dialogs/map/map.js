@@ -51,7 +51,7 @@ import initBaiduMapIframe from './map-template'
             " document.close(); " +
             " } }" +
             "</scr_ipt>" +
-            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\"http://api.map.baidu.com/api?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true\"></scr_ipt>" +
+            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\""+ parent.document.location.protocol +"//api.map.baidu.com/api?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true\"></scr_ipt>" +
             "</body>" +
             "</html>" +
             "</script>",
@@ -252,7 +252,7 @@ import initBaiduMapIframe from './map-template'
                             initBaiduMapIframe(key)
                         })
                     } else {
-                        url = "http://api.map.baidu.com/staticimage?center=" + center.lng + ',' + center.lat +
+                        url = document.location.protocol + "//api.map.baidu.com/staticimage?center=" + center.lng + ',' + center.lat +
                             "&zoom=" + zoom + "&width=" + size.width + '&height=' + size.height + "&markers=" + point.lng + ',' + point.lat;
                         editor.execCommand('inserthtml', '<img width="' + size.width + '"height="' + size.height + '" src="' + url + '"' + (widget.imgcss ? ' style="' + widget.imgcss + '"' : '') + '/>', true);
                     }

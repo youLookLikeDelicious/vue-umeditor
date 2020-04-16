@@ -19,13 +19,11 @@ function formulaTemplate () {
 `
 
     const script = document.createElement('script')
-    script.innerHTML = 
-        `window.$ = parent.$
-        window.mathquillV10 = parent.MathQuillV10
-        window.mathquillV10()
+    script.innerHTML = `
+        window.$ = parent.$
         window.MQ = parent.MQ
-        $(function(){
 
+        $(function(){
             var UM = parent.UM,
                 $iframe = $(getSelfIframe()),
                 editorId = $iframe.parents('.edui-body-container').attr('id'),
@@ -102,7 +100,7 @@ function formulaTemplate () {
                         editor.$body.find('iframe').not($iframe).each(function(k, v){
                           try{
                             v.contentWindow.formula.blur();
-                          } catch {
+                          } catch (e) {
                             
                           }
                         });

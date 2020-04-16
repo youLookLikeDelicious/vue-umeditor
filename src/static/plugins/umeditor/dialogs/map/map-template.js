@@ -162,7 +162,7 @@ export default function (iframe) {
     _window.BMap_loadScriptTime = (new Date).getTime()
     const scriptLink = doc.createElement('script')
     scriptLink.type = 'text/javascript'
-    scriptLink.src = 'http://api.map.baidu.com/getscript?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true&t=20200103103842'
+    scriptLink.src = parent.document.location.protocol + '//api.map.baidu.com/getscript?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true&t=20200103103842'
     scriptLink.onload = function () {
         try{
             _window.initMap()

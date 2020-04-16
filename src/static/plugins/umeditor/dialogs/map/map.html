@@ -14,7 +14,12 @@
             overflow: hidden;
         }
     </style>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true"></script>
+    <script>
+        var scriptEl = document.createElement('script')
+        script.type="text/javascript"
+        script.src = parent.document.location.protocol + '//api.map.baidu.com/api?key=&v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true'
+        document.head.appendChild(scriptEl)
+    </script>
 </head>
 
 <body onload="initMap();">
@@ -104,7 +109,7 @@
             var zoom = map.getZoom(),
                 center = map.getCenter(),
                 marker = window.marker.P;
-            console.log(center)
+            
             iframe.src = iframe.src.
                 replace(new RegExp('([?#&])center=([^?#&]+)', 'i'), '$1center=' + center.lng + ',' + center.lat).
                 replace(new RegExp('([?#&])markers=([^?#&]+)', 'i'), '$1markers=' + center.lng + ',' + center.lat).
