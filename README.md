@@ -1,13 +1,16 @@
 # vue组件umeditor
-```
-    使用iconfont重写UI
+1. 使用iconfont重写UI
+2. 重写图片上传部分，实现本地预览
+3. 添加上传代码的功能
 
-    重写图片上传部分，实现本地预览
+### 兼容性
+IE >= 10
 
-    添加上传代码的功能
-```
-
-    
+### 依赖
+1. jQuery
+2. umeditor
+3. MathQuill
+4. baiduMap
 ### 使用
 #### 安装
 ```bash
@@ -48,3 +51,5 @@ new Vue({
 
 #### 演示地址
 [vue-umeditor演示地址](https://www.chaosxy.com/archives/84554c2.html)
+
+*如果有什么意见或是建议，欢迎留言讨论*
