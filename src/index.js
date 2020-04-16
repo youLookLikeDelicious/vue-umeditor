@@ -9,7 +9,7 @@ import initBaiduMapIframe from './static/plugins/umeditor/dialogs/map/map-templa
 //     }
 // })
 //*/
-// 初始化地圖
+// 初始化地图
 function initMap (doc) {
     if (!doc) {
         doc = document
