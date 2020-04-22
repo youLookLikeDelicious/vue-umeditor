@@ -10,7 +10,7 @@ export default {
         initMessage: {
             type: String,
             default () {
-                return '@blog1997/um-editor'
+                return '@blog1997/vue-umeditor'
             }
         },
         height: {
@@ -81,7 +81,9 @@ export default {
 
         UM.umId = this.umId
         UM.areaName = this.nameAttr
-        this.UM.setContent(this.initMessage)
+        if (this.initMessage) {
+            this.UM.setContent(this.initMessage)
+        }
         this.$emit('receiveUM', this.UM)
     }
 }

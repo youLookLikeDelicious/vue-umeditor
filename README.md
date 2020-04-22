@@ -1,4 +1,6 @@
 # vue组件umeditor
+![Current Release](https://img.shields.io/github/release/youlooklikedelicious/vue-umeditor.svg?style=flat-square)
+
 1. 使用iconfont重写UI
 2. 重写图片上传部分，实现本地预览
 3. 添加上传代码的功能
@@ -28,24 +30,24 @@ Vue.use(editor)
 #### 定义模板
 ```html
 <div id="editor">
-    <umeditor @receiveUM="receiveUM"/>
+  <umeditor @receiveUM="receiveUM"/>
 </div>
 ```
 
 #### 挂载模板
 ```javascript
 new Vue({
-    el: '#editor',
-    data() {
-        return {
-            editor: ''
-        }
-    },
-    methods: {
-        receiveUM (editor) {
-            this.editor = editor
-        }
+  el: '#editor',
+  data() {
+    return {
+      editor: ''
     }
+  },
+  methods: {
+    receiveUM (editor) {
+      this.editor = editor
+    }
+  }
 })
 ```
 

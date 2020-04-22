@@ -1,10 +1,9 @@
 {
   "name": "@blog1997/vue-umeditor",
-  "version": "1.0.1",
+  "version": "0.0.5-beta",
   "description": "rich text editor,formula editor,embed map",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js"
   },
@@ -17,7 +16,7 @@
     "umeditor",
     "editor"
   ],
-  "author": "xy",
+  "author": "xy1997",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/youLookLikeDelicious/vue-umeditor/issues"
@@ -28,6 +27,7 @@
     "@babel/core": "^7.6.2",
     "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.6.2",
+    "@semantic-release/git": "^9.0.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
@@ -48,9 +48,12 @@
     "webpack-merge": "^4.2.2"
   },
   "files": [
-    "/src"
+    "src/*"
   ],
   "dependencies": {
     "jquery": "^2.2.4"
+  },
+  "release": {
+    "branches": ["master"]
   }
 }
