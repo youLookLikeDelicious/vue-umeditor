@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: bash <(curl -s https://codecov.io/bash)
+- script: bash <(curl -s https://codecov.io/bash) -t c6962816-cdf9-44f8-b579-bef240498727
   displayName: 'Run a one-line script'
 
 - script: |
