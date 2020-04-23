@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 
+service_name: travis-pro
+repo_token: 025WPBOh5pNKvLJeaS9XlXgkIW9h4C3ai
+
 - 6
 branches:
  only:
