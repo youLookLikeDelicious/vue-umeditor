@@ -9,5 +9,10 @@
         "forceAllTransforms": true
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [ "istanbul" ]
+    }
+  }
 }

@@ -1,6 +1,7 @@
 # vue组件umeditor
 ![Current Release](https://img.shields.io/npm/v/@blog1997/vue-umeditor)
 ![license](https://img.shields.io/github/license/youLookLikeDelicious/vue-umeditor)
+[![Coverage Status](https://coveralls.io/repos/github/youLookLikeDelicious/vue-umeditor/badge.svg?branch=master)](https://coveralls.io/github/youLookLikeDelicious/vue-umeditor?branch=master)
 1. 使用iconfont重写UI
 2. 重写图片上传部分，实现本地预览
 3. 添加上传代码的功能
