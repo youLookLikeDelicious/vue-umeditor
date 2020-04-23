@@ -1,15 +1,16 @@
 {
   "name": "@blog1997/vue-umeditor",
-  "version": "0.0.5-beta",
+  "version": "0.0.0-development",
   "description": "rich text editor,formula editor,embed map",
   "main": "src/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
-    "build": "webpack --config ./config/webpack.prod.js"
+    "build": "webpack --config ./config/webpack.prod.js",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/youLookLikeDelicious/vue-umeditor.git"
+    "url": "https://github.com/youLookLikeDelicious/vue-umeditor.git"
   },
   "keywords": [
     "vue",
@@ -27,9 +28,9 @@
     "@babel/core": "^7.6.2",
     "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.6.2",
-    "@semantic-release/git": "^9.0.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "codecov": "^3.6.5",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
@@ -54,6 +55,8 @@
     "jquery": "^2.2.4"
   },
   "release": {
-    "branches": ["master"]
+    "branches": [
+      "master"
+    ]
   }
 }
