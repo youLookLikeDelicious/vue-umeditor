@@ -1,18 +1,20 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+codecov:
+  require_ci_to_pass: yes
 
-trigger:
-- master
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
 
-pool:
-  vmImage: 'ubuntu-latest'
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
 
-steps:
-- script: bash <(curl -s https://codecov.io/bash) -t c6962816-cdf9-44f8-b579-bef240498727
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo sdf
-  displayName: 'Run a multi-line script'
+comment:
+  layout: "reach,diff,flags,tree"
+  behavior: default
+  require_changes: no
