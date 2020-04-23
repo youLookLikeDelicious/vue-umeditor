@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
-    "semantic-release": "semantic-release"
+    "test": "nodeunit test",
+    "codecov": "jscoverage lib && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov test && codecov"
   },
   "repository": {
     "type": "git",
@@ -36,8 +37,10 @@
     "file-loader": "^4.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jscoverage": "^0.6.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
+    "nodeunit": "^0.11.3",
     "raw-loader": "^4.0.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
@@ -52,7 +55,7 @@
     "src/*"
   ],
   "dependencies": {
-    "jquery": "^2.2.4"
+    "jquery": "^3.5.0"
   },
   "release": {
     "branches": [
