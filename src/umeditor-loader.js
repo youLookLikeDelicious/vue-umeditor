@@ -8,7 +8,6 @@ import './static/plugins/umeditor/lang/zh-cn/zh-cn.js'
 
 import './static/plugins/umeditor/dialogs/formula/mathquill.css'
 
-
 import './static/style/icofont.min.css'
 import './static/plugins/umeditor/dialogs/formula/mathquill.min'
 var MQ = MathQuill.getInterface(2);

@@ -82,15 +82,15 @@ module.exports = {
         }),
 		//  静态资源的设置
         new CopyPlugin([
-            {
-                from: './src/static/plugins',	// 相对于项目根目录
-                to: 'plugins/'
-                // flatten: true
-            },
-            {
-                from: './src/static/style',	// 相对于项目根目录
-                to: 'style/'
-            }
+            // {
+            //     from: './src/static/plugins',	// 相对于项目根目录
+            //     to: 'plugins/'
+            //     // flatten: true
+            // },
+            // {
+            //     from: './src/static/style',	// 相对于项目根目录
+            //     to: 'style/'
+            // }
         ]),
         new VueLoaderPlugin()
     ],
