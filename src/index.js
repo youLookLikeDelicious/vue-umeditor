@@ -3,11 +3,11 @@ import './umeditor-loader'
 import initBaiduMapIframe from './static/plugins/umeditor/dialogs/map/map-template'
 /** */
 //* 测试使用
-// Vue.use({
-//     install (Vue, options) {
-//         Vue.component('umeditor', umeditor)
-//     }
-// })
+Vue.use({
+    install (Vue, options) {
+        Vue.component('umeditor', umeditor)
+    }
+})
 //*/
 // 初始化地图
 function initMap (doc) {
