@@ -1,9 +1,9 @@
 const path = require('path')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     // 入口js文件的位置
@@ -15,6 +15,10 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+            },
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
@@ -76,12 +80,6 @@ module.exports = {
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets: true
         }),
-        // HTML模板的相关设置
-        new HtmlWebpackPlugin({
-            title: 'Vue-umeditor',
-            template: './src/index.html',
-            filename: 'index.html'
-        }),
 		//  静态资源的设置
         new CopyPlugin([
             {
@@ -94,6 +92,7 @@ module.exports = {
                 to: 'style/'
             }
         ]),
+        new VueLoaderPlugin()
     ],
     optimization: {
         // 压缩js文件的相关设置
