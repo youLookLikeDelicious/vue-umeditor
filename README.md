@@ -2,6 +2,8 @@
 [![Current Release](https://img.shields.io/npm/v/@blog1997/vue-umeditor)](https://www.npmjs.com/package/@blog1997/vue-umeditor)
 [![license](https://img.shields.io/github/license/youLookLikeDelicious/vue-umeditor)](https://github.com/youLookLikeDelicious/vue-umeditor/blob/master/LICENSE.md)
 ![javascript](https://img.shields.io/github/languages/top/youLookLIkeDelicious/vue-umeditor)
+### 效果图
+![rendering](https://github.com/youLookLikeDelicious/vue-umeditor/blob/master/doc/img/Screenshot_3.png?raw=true)
 1. 使用iconfont重写UI
 2. 重写图片上传部分，实现本地预览
 3. 添加上传代码的功能
