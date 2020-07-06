@@ -10,8 +10,10 @@ import './static/plugins/umeditor/dialogs/formula/mathquill.css'
 
 import './static/style/icofont.min.css'
 import './static/plugins/umeditor/dialogs/formula/mathquill.min'
+
 var MQ = MathQuill.getInterface(2);
 window.MQ = MQ
+
 import './static/plugins/umeditor/dialogs/code/code'
 import './static/plugins/umeditor/dialogs/emotion/emotion'
 import './static/plugins/umeditor/dialogs/formula/formula'

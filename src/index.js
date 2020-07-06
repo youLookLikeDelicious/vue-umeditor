@@ -1,5 +1,5 @@
-import umeditor from "./umeditor"
 import './umeditor-loader'
+import component from "../component"
 import initBaiduMapIframe from './static/plugins/umeditor/dialogs/map/map-template'
 
 // 初始化地图
@@ -45,6 +45,6 @@ export { initFormula }
 
 export default {
     install (Vue, options) {
-        Vue.component('umeditor', umeditor)
+        Vue.component('umeditor', component)
     }
 }

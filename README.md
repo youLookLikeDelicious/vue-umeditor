@@ -7,9 +7,12 @@
 1. 使用iconfont重写UI
 2. 重写图片上传部分，实现本地预览
 3. 添加上传代码的功能
+4. 支持插入百度地图
 
 ### 兼容性
-IE >= 10
+IE >= 10 (插入地图、公式的功能也可以在IE9中使用)  
+Chrome  
+Firebox
 
 ### 依赖
 1. jQuery
@@ -17,6 +20,8 @@ IE >= 10
 3. MathQuill
 4. baiduMap
 ### 使用
+*其他关于umeditor的操作请参考[官方文档](http://ueditor.baidu.com/website/umeditor.html)*
+
 #### 安装
 ```bash
 npm install '@blog1997/vue-umeditor' --save
@@ -54,9 +59,11 @@ new Vue({
 })
 ```
 
+#### 提示
+这个包使用的是ES6语法，需要在使用的时候配置一下babel-loader。  
+例如：  
+在vue项目中，需要对[transpileDependencies](https://cli.vuejs.org/zh/config/#transpiledependencies)属性进行配置  
+在nuxt项目中，对[transpile](https://zh.nuxtjs.org/api/configuration-build/#transpile)属性进行配置
+
 #### 演示地址
 [vue-umeditor演示地址](https://www.chaosxy.com/archives/84554c2.html)
-
-*如果有什么意见或是建议，欢迎留言讨论*
-
-[issue](https://github.com/youLookLikeDelicious/vue-umeditor)

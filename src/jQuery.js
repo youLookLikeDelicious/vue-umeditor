@@ -1,2 +1,8 @@
-import jQuery from 'jquery'
-window.jQuery = window.$ = jQuery
+import $ from 'jquery'
+
+if (!$) {
+    require('jquery')
+} else {    
+    window.$ = $
+    window.jQuery = $
+}
