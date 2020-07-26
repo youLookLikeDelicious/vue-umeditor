@@ -123,10 +123,13 @@ etpl.config({
 
         var currentPath = document.getElementsByTagName('script');
 
-        currentPath = currentPath[ currentPath.length -1 ].src;
+        try {
+            currentPath = currentPath[ currentPath.length -1 ].src;
 
-        return new PathStack().push( currentPath ) + "";
+            return new PathStack().push( currentPath ) + "";
+        } catch (e) {
 
+        }
 
     })();
 

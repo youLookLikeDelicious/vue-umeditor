@@ -12,7 +12,7 @@ html, body {
     overflow: hidden;
 }
 </style>
-<script src=${protocol}//api.map.baidu.com/getscript?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true&t=20200103103842></script>
+<script src=${protocol}//api.map.baidu.com/getscript?v=2.0&ak=IaNYeZtR3jsoZhA9cH7EOAZQ4Ynp2KT7&services=true&t=20200103103842></script>
 </head>
 <body>
 <div style="border:#ccc solid 1px;" id="dituContent"></div>

@@ -51,7 +51,7 @@ import initBaiduMapIframe from './map-template'
             " document.close(); " +
             " } }" +
             "</scr_ipt>" +
-            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\""+ parent.document.location.protocol +"//api.map.baidu.com/api?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true\"></scr_ipt>" +
+            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\""+ parent.document.location.protocol +"//api.map.baidu.com/api?v=2.0&ak=IaNYeZtR3jsoZhA9cH7EOAZQ4Ynp2KT7&services=true\"></scr_ipt>" +
             "</body>" +
             "</html>" +
             "</script>",
