@@ -83,7 +83,7 @@ function formulaTemplate () {
 
             $(document).find('div.mathquill-editable').html(latex)
             /* 加载公式内容 */
-            console.log($(document).find('div'))
+            // console.log($(document).find('div'))
             this.$mathquill = MQ.MathField($(document).find('div.mathquill-editable')[0], {
                 substituteTextarea: function() {
                 return document.createElement('textarea');
@@ -214,7 +214,7 @@ function formulaTemplate () {
 
         /* 绑定到window上，给上级window调用 */
         window.onload = function () {
-            console.log(document.querySelector('div'))
+            // console.log(document.querySelector('div'))
         }
         window.formula = new Formula();
     })

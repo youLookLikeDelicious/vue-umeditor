@@ -60,10 +60,14 @@ new Vue({
 ```
 
 #### 提示
-这个包使用的是ES6语法，需要在使用的时候配置一下babel-loader。  
+1、 这个包使用的是ES6语法，需要在使用的时候配置一下babel-loader。  
 例如：  
 在vue项目中，需要对[transpileDependencies](https://cli.vuejs.org/zh/config/#transpiledependencies)属性进行配置  
-在nuxt项目中，对[transpile](https://zh.nuxtjs.org/api/configuration-build/#transpile)属性进行配置
+在nuxt项目中，对[transpile](https://zh.nuxtjs.org/api/configuration-build/#transpile)属性进行配置    
+2、 内置了一个模拟组件，用于测试，这样不必在测试中加载其他的第三方插件  
+```javascript
+import umeditor from '@blog1997/vue-umeditor/test'
+```
 
 #### 演示地址
 [vue-umeditor演示地址](https://www.chaosxy.com/archives/84554c2.html)

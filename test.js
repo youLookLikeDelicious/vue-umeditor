@@ -42,7 +42,8 @@ const component = {
     data () {
       return {
         umId: 'um_editor_' + (Math.random().toFixed(3)).toString().replace('.', '_'),
-        UM: undefined // UM对象
+        UM: undefined, // UM对象
+        content: '' // 富文本的内容
       }
     },
     render (h) {
@@ -61,20 +62,28 @@ const component = {
       })
     },
     mounted () {
-      this.$emit('receiveUM', {
-        setContent () {
-  
+      function UM () {
+        this.content = 'um content'
+      }
+      UM.prototype = {
+        setContent (content) {
+          this.content = content
         },
         getContent () {
-  
+          return this.content
         },
         setHide () {
   
         },
         setShow () {
   
-        }
-      })
+        },
+        focus() {
+
+        },
+        body: ''
+      }
+      this.$emit('receiveUM', new UM())
     }
   }
   export default {
