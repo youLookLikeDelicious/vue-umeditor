@@ -24,6 +24,7 @@ Firebox
 
 #### 安装
 ```bash
+npm install raw-loader --save-dev
 npm install '@blog1997/vue-umeditor' --save
 ```
 
