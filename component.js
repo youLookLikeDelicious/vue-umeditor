@@ -35,7 +35,6 @@ export default {
             type: String,
             default () {
                 return ''
-                // return 'http://www.blog1997.com:88/api/admin/article-upload-image'
             }
         }
     },
@@ -64,8 +63,9 @@ export default {
         if (!window.UMEDITOR_CONFIG) {
             window.UMEDITOR_CONFIG = {}
         }
-        window.UMEDITOR_CONFIG['imagePath'] = "/";
-        window.UMEDITOR_CONFIG['imageUrl'] = this.uploadUrl;
+        
+        // window.UMEDITOR_CONFIG['imagePath'] = "/";
+        // window.UMEDITOR_CONFIG['imageUrl'] = this.uploadUrl;
 
         const umConfig = {
             initialFrameWidth: this.width,
@@ -79,11 +79,13 @@ export default {
         //实例化编辑器
         this.UM = UM.getEditor(this.umId, umConfig)
 
-        UM.umId = this.umId
         UM.areaName = this.nameAttr
         if (this.initMessage) {
             this.UM.setContent(this.initMessage)
         }
         this.$emit('receiveUM', this.UM)
+    },
+    beforeDestroy () {
+        this.UM.destroy()
     }
 }

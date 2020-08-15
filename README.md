@@ -59,6 +59,19 @@ new Vue({
   }
 })
 ```
+#### 关于图片的上传
+```javascript
+  // files 是formData, 有两个字段 id 和 upfile, 都是数组
+  const files = this.editor.getFileFormData()
+  ...长传操作
+  // 根据返回的数据，替换图片
+  axios.post('upload', files)
+    .then((response) => {
+      this.editor.replaceImageUrl(response.data)
+    }).catch(e => {
+      // do something
+    })
+```
 
 #### 提示
 1、 这个包使用的是ES6语法，需要在使用的时候配置一下babel-loader。  
@@ -69,6 +82,7 @@ new Vue({
 ```javascript
 import umeditor from '@blog1997/vue-umeditor/test'
 ```
+3、 数学公式在中文输入法下输入无效，需要切换到英文
 
 #### 演示地址
 [vue-umeditor演示地址](https://www.chaosxy.com/archives/84554c2.html)

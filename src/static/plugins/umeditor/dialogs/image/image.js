@@ -396,9 +396,9 @@ import './image.css'
     }
 
     Upload.getFileFormData = UM.Editor.prototype.getFileFormData = function () {
-        // Dataform方式
+        // formData方式
         var formData = new FormData(),
-            imgs = $('#' + UM.umId).find('img'),
+            imgs = $('#' + this.id).find('img'),
             i = 0,
             len = imgs.length,
             id,
@@ -423,7 +423,7 @@ import './image.css'
     * @param url 
     */
     Upload.replaceImageUrl = UM.Editor.prototype.replaceImageUrl =  function (url) {
-       var imgs = $('#' + UM.umId).find('img'),
+       var imgs = $('#' + this.id).find('img'),
            i = 0,
            len = imgs.length
 
