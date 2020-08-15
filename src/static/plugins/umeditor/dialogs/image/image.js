@@ -35,11 +35,11 @@ import './image.css'
 
                 $.each($imgs, function (index, node) {
                     $(node).removeAttr('width').removeAttr('height')
-//                if (node.width > editor.options.initialFrameWidth) {
-//                    me.scale(node, editor.options.initialFrameWidth -
-//                        parseInt($(editor.body).css("padding-left"))  -
-//                        parseInt($(editor.body).css("padding-right")));
-//                }
+                    //                if (node.width > editor.options.initialFrameWidth) {
+                    //                    me.scale(node, editor.options.initialFrameWidth -
+                    //                        parseInt($(editor.body).css("padding-left"))  -
+                    //                        parseInt($(editor.body).css("padding-right")));
+                    //                }
                     return arr.push({
                         'width': 200,
                         'src': node.src,
@@ -50,7 +50,10 @@ import './image.css'
                 return arr
             },
             scale: function (img, max, oWidth, oHeight) {
-                var width = 0, height = 0, percent, ow = img.width || oWidth, oh = img.height || oHeight
+                var width = 0,
+                    height = 0,
+                    percent, ow = img.width || oWidth,
+                    oh = img.height || oHeight
                 if (ow > max || oh > max) {
                     if (ow >= oh) {
                         if (width = ow - max) {
@@ -99,7 +102,7 @@ import './image.css'
                 this.imgPreView = ImgPreview(ele, this.callback)
             },
             preView: function (url) {
-                var $w = $('#edui-dialog-image')	// 添加图片时，弹出的对话框
+                var $w = $('#edui-dialog-image') // 添加图片时，弹出的对话框
 
                 var $img = $('<img src=\'' + url + '\' class=\'edui-image-pic\' data-id=\'' + Upload.showCount + '\' />'),
                     $item = $('<div class=\'edui-image-item edui-image-upload-item\'><div class=\'edui-image-close\'></div></div>').append($img)
@@ -147,7 +150,7 @@ import './image.css'
                     currentDialog.showTip('FALSE')
                     window.setTimeout(function () {
                         currentDialog.hideTip()
-                        Upload.toggleMask()		// 显示input 标签
+                        Upload.toggleMask() // 显示input 标签
                     }, 3000)
                 }
                 // 2、更新input的值
@@ -157,7 +160,8 @@ import './image.css'
             pushFiles: function () {
                 var tmp = this.tmpFileInput,
                     fileList = this.fileList,
-                    i = 0, len = tmp.length
+                    i = 0,
+                    len = tmp.length
 
                 if (!len) {
                     return
@@ -214,58 +218,20 @@ import './image.css'
             var me = this,
                 url = me.editor.options.imageUrl
 
-            url = url + (url.indexOf('?') == -1 ? '?' : '&') + 'editorid=' + me.editor.id//初始form提交地址;
+            url = url + (url.indexOf('?') == -1 ? '?' : '&') + 'editorid=' + me.editor.id //初始form提交地址;
             if (window.UMEDITOR_CONFIG['allowSyn'] && !Base.supportPreview) {
                 $(sel).find('.edui-image-form').attr('action', window.UMEDITOR_CONFIG['imageUrl'] + '?' + encodeURI('callback=window.parent.imgBase.imgPreView.asynCallback'))
             }
 
             return me
         },
-        getFileFormDate: function () {
-            // Dataform方式
-            var formData = new FormData(),
-                imgs = $('#' + UM.umId).find('img'),
-                i = 0, len = imgs.length,
-                id,
-                flag = false
-
-            for (; i < len; i++) {
-                if (imgs[i].id) {
-                    id = imgs[i].id.toString()
-                    formData.append('upfile[]', Base.fileList[id])
-                    formData.append('id[]', id)
-                    if (flag !== true) {
-                        flag = true
-                    }
-                }
-            }
-
-            return flag ? formData : null
-        },
-        /**
-         * 替换上传图片的地址
-         * [{number: string}]
-         * @param url 
-         */
-        replaceImageUrl: function (url) {
-            var imgs = $('#' + UM.umId).find('img'),
-                i = 0, len = imgs.length,
-                myEditor = Upload.editor.textarea
-
-            // 替换UM的innerHTML
-            for (; i < len; i++) {
-                if (imgs[i].id !== '') {
-                    imgs[i].src = url[imgs[i].id]
-                    imgs[i].removeAttribute('id')
-                }
-            }
-        },
         // 上传文件(图片)， 异步提交
         uploadFile: function (pForm) {
-            var inputs = [], data_id,
+            var inputs = [],
+                data_id,
                 i = 0,
                 myEditor = $('#' + UM.umId),
-                imgs = myEditor.find('img'),		 	// 获取文本中的图片
+                imgs = myEditor.find('img'), // 获取文本中的图片
                 url = window.UMEDITOR_CONFIG['imageUrl'] // 上传路径
 
             if (imgs.length == 0) {
@@ -273,7 +239,7 @@ import './image.css'
             }
 
             // Dataform方式
-            var formData = Upload.getFileFormDate()
+            var formData = Upload.getFileFormData()
 
             if (!formData) {
                 return
@@ -290,7 +256,7 @@ import './image.css'
                     // 图片上传成功,替换图片路径，提交form表单
                     if (data['data']) {
                         var myEditor = Upload.editor.textarea
-                        
+
                         Upload.replaceImageUrl(data.data)
 
                         pForm.setAttribute('data-hook', '1')
@@ -308,7 +274,8 @@ import './image.css'
         submit: function () {
             var me = this,
                 input = $('<input style="filter: alpha(opacity=0);" class="edui-image-file" type="file" hidefocus="" name="upfile[]" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp">'),
-                input = input[0], tmpInput
+                input = input[0],
+                tmpInput
 
             // 只执行一次
             if (!this.isInit) {
@@ -323,18 +290,17 @@ import './image.css'
                 if (!form) {
                     return me
                 }
-                
+
                 form.setAttribute('data-hook', '0')
                 // 先提交图片，再提交form表单,如果使用异步提交达到预览效果，则不用对提交数据进行处理
                 if (Base.supportPreview) {
                     $(form).on('submit', function (event) {
-                            if (this.getAttribute('data-hook') == '0') {
-                                // 使用异步提交实现预览效果，无需再进行文件提交
-                                event.preventDefault()
-                                Upload.uploadFile(this)
-                            }
+                        if (this.getAttribute('data-hook') == '0') {
+                            // 使用异步提交实现预览效果，无需再进行文件提交
+                            event.preventDefault()
+                            Upload.uploadFile(this)
                         }
-                    )
+                    })
                 } else {
                     $(form).on('submit', function (event) {
                         // 处理文本内容
@@ -428,11 +394,47 @@ import './image.css'
             return me
         }
     }
-    // 赋值到全局变量，用于手动提交
-    // 配合vue使用,
-    // 否则laravel不能通过对用户的验证
-    window.UM.getFileFormDate = Upload.getFileFormDate
-    window.UM.replaceImageUrl = Upload.replaceImageUrl
+
+    Upload.getFileFormData = UM.Editor.prototype.getFileFormData = function () {
+        // Dataform方式
+        var formData = new FormData(),
+            imgs = $('#' + UM.umId).find('img'),
+            i = 0,
+            len = imgs.length,
+            id,
+            flag = false
+
+        for (; i < len; i++) {
+            if (imgs[i].id) {
+                id = imgs[i].id.toString()
+                formData.append('upfile[]', Base.fileList[id])
+                formData.append('id[]', id)
+                if (flag !== true) {
+                    flag = true
+                }
+            }
+        }
+
+        return flag ? formData : null
+    }
+    /**
+    * 替换上传图片的地址
+    * [{number: string}]
+    * @param url 
+    */
+    Upload.replaceImageUrl = UM.Editor.prototype.replaceImageUrl =  function (url) {
+       var imgs = $('#' + UM.umId).find('img'),
+           i = 0,
+           len = imgs.length
+
+       // 替换UM的innerHTML
+       for (; i < len; i++) {
+           if (imgs[i].id !== '') {
+               imgs[i].src = url[imgs[i].id]
+               imgs[i].removeAttribute('id')
+           }
+       }
+   }
     /*
      * 网络图片
      * */
@@ -451,26 +453,26 @@ import './image.css'
                 $ele = $('.edui-image-searchTxt', me.dialog)
 
             $('.edui-image-searchAdd', me.dialog).on('click', function () {
-                url = $('.edui-image-searchTxt').val()
-                
-                if (url) {
+                    url = $('.edui-image-searchTxt').val()
 
-                    $('<img src=\'' + url + '\' class=\'edui-image-pic\' />').on('load', function () {
+                    if (url) {
 
-                        var $item = $('<div class=\'edui-image-item\'><div class=\'edui-image-close\'></div></div>').append(this)
+                        $('<img src=\'' + url + '\' class=\'edui-image-pic\' />').on('load', function () {
 
-                        $('.edui-image-searchRes', me.dialog).append($item)
+                            var $item = $('<div class=\'edui-image-item\'><div class=\'edui-image-close\'></div></div>').append(this)
 
-                        Base.scale(this, 120)
+                            $('.edui-image-searchRes', me.dialog).append($item)
 
-                        $item.width($(this).width())
+                            Base.scale(this, 120)
 
-                        Base.close($(this))
+                            $item.width($(this).width())
 
-                        $ele.val('')
-                    })
-                }
-            })
+                            Base.close($(this))
+
+                            $ele.val('')
+                        })
+                    }
+                })
                 .hover(function () {
                     $(this).toggleClass('hover')
                 })
@@ -479,7 +481,7 @@ import './image.css'
 
     var $tab = null,
         currentDialog = null,
-        formHandler = false				// 判断父级form是否添加监听事件
+        formHandler = false // 判断父级form是否添加监听事件
 
     UM.registerWidget('image', {
         tpl: '<div class="edui-image-wrapper">' +
@@ -518,7 +520,9 @@ import './image.css'
 
         },
         initEvent: function (editor, $w) {
-            $tab = $.eduitab({ selector: '.edui-image-wrapper' })
+            $tab = $.eduitab({
+                    selector: '.edui-image-wrapper'
+                })
                 .edui().on('beforeshow', function (e) {
                     e.stopPropagation()
                 })
@@ -562,10 +566,13 @@ import './image.css'
         // 编辑界面的拖拽事件, 只能拖拽图片
         $('#myEditor').on('drop', function (event) {
             var e = event || window.event,
-                files = e.originalEvent.dataTransfer.files, file,
-                i = 0, len = files.length,
+                files = e.originalEvent.dataTransfer.files,
+                file,
+                i = 0,
+                len = files.length,
                 url, _this = $(this),
-                list = [], str = '',
+                list = [],
+                str = '',
                 fileList, tmpInput
             var range, sel, typePattern = /^image/
 

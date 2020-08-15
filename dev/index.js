@@ -6,6 +6,6 @@ Vue.config.productionTip = false;
 
 Vue.use(editor)
 
-new Vue({
+const um = new Vue({
     render: h => h(template)
 }).$mount('#app')
