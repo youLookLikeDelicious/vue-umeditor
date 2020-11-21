@@ -1,15 +1,33 @@
 @charset "utf-8";
 .edui-dialog-video .edui-video-wrapper{ width: 570px;_width:575px;margin: 10px auto; zoom:1;position: relative}
-.edui-dialog-video .edui-video-tabbody{height:335px;}
-.edui-dialog-video .edui-video-panel { position: absolute;width:100%; height:100%;background: #fff;}
+.edui-dialog-video .edui-video-tabbody{height:210px;}
+.edui-dialog-video .edui-video-panel { position: absolute;width:100%;background: #fff; box-sizing: border-box; padding: 0 5px;}
+.edui-dialog-video .edui-video-panel table{
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
 .edui-dialog-video .edui-video-panel table td{vertical-align: middle;}
-.edui-dialog-video #eduiVideoUrl {
-    width: 470px;
-    height: 21px;
+.edui-dialog-video #embed-area {
+    width: 100%;
+    height: 180px;
     line-height: 21px;
-    margin: 8px 5px;
+    margin: 8px auto;
     background: #FFF;
     border: 1px solid #d7d7d7;
+    outline: none;
+    box-sizing: border-box;
+}
+.edui-dialog-video .embed-frame-width, .edui-dialog-video .embed-frame-height{
+    border: .1px solid #d7d7d7;
+    outline: none;
+    padding: 5px 3px;
+}
+.edui-dialog-video .embed-frame-height{
+    float: right;
 }
 .edui-dialog-video #eduiVideoSearchTxt{margin-left:15px;background: #FFF;width:200px;height:21px;line-height:21px;border: 1px solid #d7d7d7;}
 .edui-dialog-video #searchList{width: 570px;overflow: auto;zoom:1;height: 270px;}
@@ -34,7 +52,7 @@
 
 
 
-.edui-dialog-video #eduiVideoPreview{width: 420px; margin-left: 10px; _margin-left:5px; height: 280px;background-color: #ddd;float: left}
+.edui-dialog-video #eduiVideoPreview{width: 100%; _margin-left:5px; height: 21px;float: left}
 .edui-dialog-video #eduiVideoInfo {width: 120px;float: left;margin-left: 10px;_margin-left:7px;}
 .edui-dialog-video .edui-video-wrapper fieldset{
     border: 1px solid #ddd;

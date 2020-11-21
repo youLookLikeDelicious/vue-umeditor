@@ -61,7 +61,9 @@ function initMap() {
     if(iframe && UM && editor) { //在编辑状态下
         setMapListener();//地图改变修改外层的iframe标签src属性
     } else {
-        document.focus();
+        try{
+            document.focus();
+        } catch(e) {}
     }
 }
 
@@ -110,11 +112,13 @@ function setMapListener() {
             replace(new RegExp('([?#&])center=([^?#&]+)', 'i'), '$1center=' + center.lng + ',' + center.lat).
             replace(new RegExp('([?#&])markers=([^?#&]+)', 'i'), '$1markers=' + center.lng + ',' + center.lat).
             replace(new RegExp('([?#&])zoom=([^?#&]+)', 'i'), '$1zoom=' + zoom));
-        editor.fireEvent('saveScene');
-        saveScene(editor);
+            saveScene(editor);
     }
 
-    function saveScene(){
+    function saveScene(editor){
+        if (!editor) {
+            return
+        }
         if(!timer) {
             timer = setTimeout(function(){
                 editor.fireEvent('savescene');
@@ -153,6 +157,7 @@ window.onload = initMap
 `
 }
 
+export {getMapTemplate}
 // 如果iframe中没有script标签，向iframe中追加内容
 export default function (iframe) {
     var doc, _window;
@@ -161,10 +166,10 @@ export default function (iframe) {
     _window = iframe.contentWindow
     
     // 只需初始化一次
-    if (_window.init) {
+    if (iframe.className.indexOf('map-has-active') >= 0) {
         return
     }
-    _window.init = true
+    
     
     // if (doc.querySelector('script')) {
     //     return
@@ -175,4 +180,6 @@ export default function (iframe) {
     doc.open()
     doc.write(getMapTemplate(parent.document.location.protocol))
     doc.close()
+    
+    iframe.className += ' map-has-active'
 }

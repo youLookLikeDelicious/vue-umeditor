@@ -3,7 +3,7 @@ import component from "../component"
 import initBaiduMapIframe from './static/plugins/umeditor/dialogs/map/map-template'
 
 // 初始化地图
-function initMap (doc) {
+function initMap(doc) {
     if (!doc) {
         doc = document
     }
@@ -21,11 +21,12 @@ function initMap (doc) {
     })
 }
 window.initMap = initMap
-export { initMap }
+export {
+    initMap
+}
 
-// 初始化公式
-function initFormula (doc) {
-    doc = doc || document
+function convertLatex(doc) {
+    doc = doc || window.document
     $(function () {
         $(doc).find('.mathquill-embedded-latex').each(function (key, v) {
             // 已经初始化，无需任何操作
@@ -37,14 +38,22 @@ function initFormula (doc) {
         })
     })
 }
+
+// 初始化公式
+function initFormula(doc) {
+    convertLatex(doc)
+}
+
 window.initFormula = initFormula
-initFormula()
-initMap()
 
-export { initFormula }
+export {
+    initFormula
+}
 
-export default {
-    install (Vue, options) {
+const VueUmeditor = {
+    install(Vue, options) {
         Vue.component('umeditor', component)
     }
 }
+
+export default VueUmeditor

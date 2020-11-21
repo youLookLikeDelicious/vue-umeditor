@@ -1,7 +1,7 @@
 /**
  * 中文语言包
  */
-UM.I18N['zh-cn'] = {
+const CnLang = {
     'labelMap':{
         'anchor':'锚点', 'undo':'撤销', 'redo':'重做', 'bold':'加粗', 'indent':'首行缩进', 'snapscreen':'截图',
         'italic':'斜体', 'underline':'下划线', 'strikethrough':'删除线', 'subscript':'下标','fontborder':'字符边框',
@@ -111,10 +111,11 @@ UM.I18N['zh-cn'] = {
             'lang_address':"地址",
             'city':{'value':"北京"},
             'lang_search':"搜索",
-            'lang_dynamicmap':"插入动态地图"
+            'lang_dynamicmap':"插入动态地图",
+            baiduMapAk: 'ak'
         },
         'cityMsg':"请选择城市",
-        'errorMsg':"抱歉，找不到该位置！"
+        'errorMsg':"抱歉，找不到该位置！",
     },
     'video':{
         'static':{
@@ -127,7 +128,9 @@ UM.I18N['zh-cn'] = {
             'videoSearchTxt':{'value':"请输入搜索关键字！"},
             'videoType':{'options':["全部", "热门", "娱乐", "搞笑", "体育", "科技", "综艺"]},
             'videoSearchBtn':{'value':"百度一下"},
-            'videoSearchReset':{'value':"清空结果"}
+            'videoSearchReset':{'value':"清空结果"},
+            lang_embedWidth: '模板宽度,如 1px, 1rem, 1%',
+            lang_embedHeight: '模板高度 1px, 1rem, 1%'
         },
         'numError':"请输入正确的数值，如123,400",
         'floatLeft':"左浮动",
@@ -138,7 +141,8 @@ UM.I18N['zh-cn'] = {
         'loading':" &nbsp;视频加载中，请等待……",
         'clickToSelect':"点击选中",
         'goToSource':'访问源视频',
-        'noVideo':" &nbsp; &nbsp;抱歉，找不到对应的视频，请重试！"
+        'noVideo':" &nbsp; &nbsp;抱歉，找不到对应的视频，请重试！",
+        embedError: '暂不支持嵌入的代码'
     },
     'formula':{
         'static':{
@@ -148,3 +152,5 @@ UM.I18N['zh-cn'] = {
         }
     }
 };
+
+UM.I18N['zh-cn'] = CnLang

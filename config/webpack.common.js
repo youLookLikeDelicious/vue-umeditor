@@ -1,5 +1,7 @@
 const path = require('path')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const {
+    CleanWebpackPlugin
+} = require('clean-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin
@@ -7,15 +9,37 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     // 入口js文件的位置
-    entry: ["@babel/polyfill", "./src/index.js"],
+    entry: [
+        '@babel/polyfill',
+        "./src/index.js"
+    ],
     output: {
         path: path.resolve(__dirname, '../dist/'),
-        filename: "bundle.js",
-        // publicPath: "/dist/"		// 在浏览器地址中输入的
+        filename: "[name].bundle.js",
+        // publicPath: "/dist/"	,	// 在浏览器地址中输入的
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            maxInitialRequests: Infinity,
+            minSize: 0,
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name(module) {
+                        // get the name. E.g. node_modules/packageName/not/this/part.js
+                        // or node_modules/packageName
+                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+                        // npm package names are URL-safe, but some servers don't like @ symbols
+                        return `npm.${packageName.replace('@', '')}`;
+                    },
+                },
+            },
+        }
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.vue$/,
                 loader: 'vue-loader',
             },
@@ -35,10 +59,15 @@ module.exports = {
                     // {
                     //     loader: MiniCssExtractPlugin.loader
                     // },
-                    /**/{
+                    /**/
+                    {
                         loader: 'style-loader',
-                        options: { attributes: { class: 'webpack-style' } }
-                    }  ,//*/ 
+                        options: {
+                            attributes: {
+                                class: 'webpack-style'
+                            }
+                        }
+                    }, //*/ 
                     {
                         loader: 'css-loader',
                     }, {
@@ -48,11 +77,9 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader?name=./img/[name].[ext]'
-                    }
-                ]
+                use: [{
+                    loader: 'file-loader?name=./img/[name].[ext]'
+                }]
             },
             {
                 test: /\.html$/i,
@@ -64,15 +91,13 @@ module.exports = {
             },
             {
                 test: /\.(woff(2)?|ttf|eot|otf|svg)$/,
-                use: [
-                    {
-                        loader: 'file-loader?name=./font/[name].[ext]'
-                        // loader: 'url-loader',
-                        // options: {
-                        //     fallback: require.resolve('file-loader'),
-                        // }
-                    }
-                ]
+                use: [{
+                    loader: 'file-loader?name=./font/[name].[ext]'
+                    // loader: 'url-loader',
+                    // options: {
+                    //     fallback: require.resolve('file-loader'),
+                    // }
+                }]
             }
         ]
     },
@@ -80,7 +105,7 @@ module.exports = {
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets: true
         }),
-		//  静态资源的设置
+        //  静态资源的设置
         new CopyPlugin([
             // {
             //     from: './src/static/plugins',	// 相对于项目根目录
@@ -121,7 +146,7 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
-            '~': path.resolve(__dirname, '../src/')	// 将~ 定义为项目根目录
+            '~': path.resolve(__dirname, '../src/') // 将~ 定义为项目根目录
         }
     }
 }

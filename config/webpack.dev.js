@@ -7,7 +7,8 @@ module.exports = merge(common, {
   entry: "./dev/index.js",
   mode: 'development',
   devServer: {
-	  hot: true
+    hot: true,
+    port: 8088
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

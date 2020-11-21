@@ -1,0 +1,36 @@
+.umeditor-preview-box{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 9999;
+    box-sizing: border-box;
+    background-color: rgba(rgb(222, 246, 255), .7);
+}
+.umeditor-preview-box .umeditor-preview{
+    width: 98%;
+    height: 98%;
+    max-width: 1200px;
+    margin: 12px auto;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #c6c6c6;
+    top: 1%;
+}
+
+.umeditor-preview-box .umeditor-preview-header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: .1rem solid #c6c6c6;
+}
+.umeditor-preview-box .umeditor-preview-close-btn{
+    font-weight: bolder;
+    cursor: pointer;
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 3px;
+}
+.umeditor-preview-box .umeditor-preview-close-btn:hover{
+    background-color: #e6e6e6;
+}

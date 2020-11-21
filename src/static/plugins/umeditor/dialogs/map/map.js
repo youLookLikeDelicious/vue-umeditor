@@ -51,7 +51,7 @@ import initBaiduMapIframe from './map-template'
             " document.close(); " +
             " } }" +
             "</scr_ipt>" +
-            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\""+ parent.document.location.protocol +"//api.map.baidu.com/api?v=2.0&ak=IaNYeZtR3jsoZhA9cH7EOAZQ4Ynp2KT7&services=true\"></scr_ipt>" +
+            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\""+ document.location.protocol +"//api.map.baidu.com/api?v=2.0&ak=<%=baiduMapAk%>&services=true\"></scr_ipt>" +
             "</body>" +
             "</html>" +
             "</script>",
@@ -70,7 +70,7 @@ import initBaiduMapIframe from './map-template'
 
             me.lang = lang;
             me.editor = editor;
-
+            
             me.root().html($.parseTmpl(me.tpl, $.extend({}, lang['static'], {
                 'theme_url': theme_url
             })));
@@ -248,9 +248,7 @@ import initBaiduMapIframe from './map-template'
                                 '&height=' + size.height,
                                 '&markers=' + point.lng + ',' + point.lat].join('');
                         editor.execCommand('inserthtml', '<iframe class="ueditor_baidumap" _src="' + url + '" frameborder="0" width="' + (size.width+4) + '" height="' + (size.height+4) + '"></iframe>');
-                        $('.ueditor_baidumap').each(function (index, key) {
-                            initBaiduMapIframe(key)
-                        })
+
                     } else {
                         url = document.location.protocol + "//api.map.baidu.com/staticimage?center=" + center.lng + ',' + center.lat +
                             "&zoom=" + zoom + "&width=" + size.width + '&height=' + size.height + "&markers=" + point.lng + ',' + point.lat;
@@ -267,6 +265,39 @@ import initBaiduMapIframe from './map-template'
             }
         }
     });
+UM.plugins.map = function () {
+    var _this = this
+    /**
+     * @param {UM.uNode} uNode
+     */
+    this.addInputRule(function (uNode) {
+        var frames = uNode.getNodesByTagName('iframe')
+        $.each(frames, function (index, frame) {
+            if (frame.hasClass('ueditor_baidumap')) {
+                frame.removeClass('map-has-active')
+            }
+        })
+    })
 
+    this.addOutputRule(function (uNode) {
+        $('.ueditor_baidumap', this.body).each(function (index, frame) {
+            if (frame.className.indexOf('map-has-active') >= 0) {
+                return
+            }
+            initBaiduMapIframe(frame)
+        })
+    })
+    
+    this.commands.map = {
+        execCommand: function (a, b) {
+        },
+        queryCommandState () {
+            return 0 // 菜单是否被选中
+        },
+        queryCommandValue: function () {
+            return 'map'
+        }
+    }
+}
 })();
 

@@ -1,4 +1,5 @@
-import './formula.css'
+import { styleContent } from './formula-template'
+
 (function () {
 
     var editor = null;
@@ -15,8 +16,8 @@ import './formula.css'
                 // 16个
                 'common': [
                     "{/}frac{ }{ }", "^{ }/_{ }", "x^{ }", "x_{ }", "x^{ }_{ }", "{/}bar{ }", "{/}sqrt{ }", "{/}nthroot{ }{ }",
-                    "{/}sum^{ }_{n=}", "{/}sum", "{/}log_{ }", "{/}ln{ }", "{/}int_{ }^{ }", "{/}oint_{ }^{ }", "{/}overrightarrow{ab}", "{/}overleftarrow{ab}",
-                    "^{{/}lim}_{n \\to \\infty}", '\\matrix { }{ }{ }', '{ }'
+                    "{/}sum^{ }_{n=}", "{/}sum", "{/}log_{ }", "{/}ln{ }", "{/}int_{ }^{ }", "\\oint^{ }_{ }", "{/}overrightarrow{ab}", "{/}overleftarrow{ab}",
+                    "^\\lim_{n \\to \\infty}", '\\begin{bmatrix}&amp;&amp;&amp;\\\\\\end{bmatrix}',
                 ],
                 // 36个
                 'symbol': [
@@ -129,5 +130,12 @@ import './formula.css'
         height: 400
     });
 
+    function addMathQuillStyle () {
+        var style = document.createElement('style')
+        style.className = 'mathquill-style'
+        document.head.appendChild(style)
+        style.innerHTML = styleContent
+    }
+    addMathQuillStyle()
 })();
 

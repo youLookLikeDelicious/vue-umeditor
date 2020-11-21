@@ -1,6 +1,7 @@
 import './image.css'
 (function () {
     var utils = UM.utils,
+        widgetName = 'image',
         browser = UM.browser,
         Base = {
             supportPreview: ImgPreview.prototype.supportPreview,
@@ -28,18 +29,16 @@ import './image.css'
                 }
                 return url
             },
-            getAllPic: function (sel, $w, editor) {
-                var me = this,
-                    arr = [],
-                    $imgs = $(sel, $w)
+            /**
+             * 提取image的属性
+             * @param {NodeList} images 
+             * @return {array}
+             */
+            getAllPic: function (images) {
+                var arr = []
 
-                $.each($imgs, function (index, node) {
+                $.each(images, function (index, node) {
                     $(node).removeAttr('width').removeAttr('height')
-                    //                if (node.width > editor.options.initialFrameWidth) {
-                    //                    me.scale(node, editor.options.initialFrameWidth -
-                    //                        parseInt($(editor.body).css("padding-left"))  -
-                    //                        parseInt($(editor.body).css("padding-right")));
-                    //                }
                     return arr.push({
                         'width': 200,
                         'src': node.src,
@@ -126,8 +125,11 @@ import './image.css'
 
                 Upload.toggleMask()
             },
+            pushTempInputFile (data) {
+
+            },
             // 回调函数
-            // @param mixed data[File|string|array]
+            // @param mixed data[File|string]
             callback: function (data) {
                 var url = data
 
@@ -170,7 +172,7 @@ import './image.css'
                 for (i = 0, len = tmp.length; i < len; i++) {
                     fileList.push(tmp[i])
                 }
-            }
+            },
         }
 
     /*
@@ -215,10 +217,10 @@ import './image.css'
             return me
         },
         config: function (sel) {
-            var me = this,
-                url = me.editor.options.imageUrl
+            var me = this;
+            //     url = me.editor.options.imageUrl
 
-            url = url + (url.indexOf('?') == -1 ? '?' : '&') + 'editorid=' + me.editor.id //初始form提交地址;
+            // url = url + (url.indexOf('?') == -1 ? '?' : '&') + 'editorid=' + me.editor.id //初始form提交地址;
             if (window.UMEDITOR_CONFIG['allowSyn'] && !Base.supportPreview) {
                 $(sel).find('.edui-image-form').attr('action', window.UMEDITOR_CONFIG['imageUrl'] + '?' + encodeURI('callback=window.parent.imgBase.imgPreView.asynCallback'))
             }
@@ -315,10 +317,13 @@ import './image.css'
         //更新input, 将其值设为空即可
         updateInput: function () {
             var upload1 = $('.edui-image-upload1'),
-                upload2 = $('.edui-image-upload2'),
-                input1 = $('<input style="filter: alpha(opacity=0);" type="file" hidefocus="" name="upfile[]" class="edui-image-file"  accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp">'),
-                input2 = $('<input style="filter: alpha(opacity=0);" type="file" hidefocus="" name="upfile[]" class="edui-image-file"  accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp">')
+                upload2 = $('.edui-image-upload2');
 
+            if (!upload1.length) {
+                return
+            }
+            var input1 = $('<input style="filter: alpha(opacity=0);" type="file" hidefocus="" name="upfile[]" class="edui-image-file"  accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp">'),
+                input2 = $('<input style="filter: alpha(opacity=0);" type="file" hidefocus="" name="upfile[]" class="edui-image-file"  accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp">')
             upload1.find('.edui-image-file').replaceWith(input1)
             upload2.find('.edui-image-file').replaceWith(input2)
 
@@ -345,29 +350,36 @@ import './image.css'
         drag: function () {
             var me = this
             //做拽上传的支持
-            if (Base.supportPreview) {
-                me.dialog.find('.edui-image-content,.edui-image-file').on('drop', function (e) {
-                    var e = e || window.event
-                    e.preventDefault ? e.preventDefault() : e.returnValue = false
-
-                    //获取文件列表
-                    var fileList = e.originalEvent.dataTransfer.files
-
-                    $.each(fileList, function (i, f) {
-                        if (/^image/.test(f.type)) {
-                            //创建图片的base64
-                            Base.callback(f)
-                        } else {
-                            Base.callback(null)
-                        }
-                    })
-
-                }).on('dragover', function (e) {
-                    e.preventDefault()
-                }).on('dragenter', function (e) {
-                    e.preventDefault()
-                })
+            if (!Base.supportPreview) {
+                return
             }
+            // 在dialog中添加drop事件
+            me.dialog.find('.edui-image-content,.edui-image-file').on('drop', this.dropHandler).on('dragover', function (e) {
+                e.preventDefault()
+            }).on('dragenter', function (e) {
+                e.preventDefault()
+            })
+        },
+        /**
+         * 文件放下事件
+         * @param {HTMLEvent} e 
+         */
+        dropHandler: function (e) {
+            var e = e || window.event
+            e.preventDefault ? e.preventDefault() : e.returnValue = false
+
+            //获取文件列表
+            var fileList = e.originalEvent.dataTransfer.files
+
+            $.each(fileList, function (i, f) {
+                if (/^image/.test(f.type)) {
+                    //创建图片的base64
+                    Base.callback(f)
+                } else {
+                    Base.callback(null)
+                }
+            })
+
         },
         toggleMask: function (html) {
             var me = this
@@ -392,49 +404,58 @@ import './image.css'
             }
 
             return me
-        }
-    }
-
-    Upload.getFileFormData = UM.Editor.prototype.getFileFormData = function () {
-        // formData方式
-        var formData = new FormData(),
-            imgs = $('#' + this.id).find('img'),
-            i = 0,
-            len = imgs.length,
-            id,
-            flag = false
-
-        for (; i < len; i++) {
-            if (imgs[i].id) {
-                id = imgs[i].id.toString()
-                formData.append('upfile[]', Base.fileList[id])
-                formData.append('id[]', id)
-                if (flag !== true) {
-                    flag = true
+        },
+        Base: Base,
+        /**
+         * 用上传后的地址替换preview地址
+         * @param {array} url 
+         * @return {void}
+         */
+        replaceImageUrl: function (url) {
+            var imgs = $('#' + this.id).find('img')
+            
+            // 替换UM的innerHTML
+            for (var i = 0, len = imgs.length; i < len; i++) {
+                if (imgs[i].id !== '') {
+                    imgs[i].src = url.shift()
+                    imgs[i].removeAttribute('id')
                 }
             }
+            // 同步内容的更新
+            this.fireEvent('contentchange')
+        },
+        /**
+         * 获取需要上传的图片
+         * @return {FormData|null}
+         */
+        getFileFormData: function () {
+            var arr = [],
+                imgs = $('#' + this.id).find('img'),
+                i = 0, id,
+                len = imgs.length,
+                flag = false
+    
+            for (; i < len; i++) {
+                if (imgs[i].id) {
+                    id = imgs[i].id.toString()
+                    arr.push(Base.fileList[id])
+                    if (flag !== true) {
+                        flag = true
+                    }
+                }
+            }
+    
+            return flag ? arr : null
         }
-
-        return flag ? formData : null
     }
-    /**
-    * 替换上传图片的地址
-    * [{number: string}]
-    * @param url 
-    */
-    Upload.replaceImageUrl = UM.Editor.prototype.replaceImageUrl =  function (url) {
-       var imgs = $('#' + this.id).find('img'),
-           i = 0,
-           len = imgs.length
 
-       // 替换UM的innerHTML
-       for (; i < len; i++) {
-           if (imgs[i].id !== '') {
-               imgs[i].src = url[imgs[i].id]
-               imgs[i].removeAttribute('id')
-           }
-       }
-   }
+    UM.Editor.prototype.getFileFormData = Upload.getFileFormData
+    /**
+     * 替换上传图片的地址
+     * [{number: string}]
+     * @param url 
+     */
+    UM.Editor.prototype.replaceImageUrl = Upload.replaceImageUrl
     /*
      * 网络图片
      * */
@@ -483,7 +504,7 @@ import './image.css'
         currentDialog = null,
         formHandler = false // 判断父级form是否添加监听事件
 
-    UM.registerWidget('image', {
+    UM.registerWidget(widgetName, {
         tpl: '<div class="edui-image-wrapper">' +
             '<ul class="edui-tab-nav">' +
             '<li class="edui-tab-item edui-active"><a data-context=".edui-image-local" class="edui-tab-text"><%=lang_tab_local%></a></li>' +
@@ -543,7 +564,7 @@ import './image.css'
                         sel = '.edui-image-searchRes .edui-image-pic'
                     }
 
-                    var list = Base.getAllPic(sel, $w, editor)
+                    var list = Base.getAllPic($(sel, $w))
 
                     if (index != -1) {
                         editor.execCommand('insertimage', list)
@@ -562,67 +583,5 @@ import './image.css'
         width: 700,
         height: 408
     })
-    if (Base.supportPreview) {
-        // 编辑界面的拖拽事件, 只能拖拽图片
-        $('#myEditor').on('drop', function (event) {
-            var e = event || window.event,
-                files = e.originalEvent.dataTransfer.files,
-                file,
-                i = 0,
-                len = files.length,
-                url, _this = $(this),
-                list = [],
-                str = '',
-                fileList, tmpInput
-            var range, sel, typePattern = /^image/
-
-            // 阻止浏览器打开图片
-            e.preventDefault ? e.preventDefault() : e.returnValue = false
-            for (; i < len; i++) {
-                file = files[i]
-                if (typePattern.test(file.type)) {
-                    str += '<img src="' + ImgPreview.prototype.createObjectURL(file) + '" width="200" id="' + (Upload.showCount++) + '"></img>'
-                    Base.fileList.push(file)
-                }
-            }
-            this.focus()
-            if (window.getSelection && str !== '') {
-                sel = window.getSelection()
-                if (sel.rangeCount && sel.getRangeAt(0)) {
-                    var el = document.createElement('div'),
-                        frag = document.createDocumentFragment(),
-                        node, lastNode
-
-                    range = sel.getRangeAt(0)
-                    range.deleteContents()
-
-                    el.innerHTML = str
-                    // 将图片添加到dom片段中
-                    i = 0
-                    len = el.childNodes.length
-                    for (; i < len; i++) {
-                        frag.appendChild(el.childNodes[i].cloneNode())
-                    }
-                    range.insertNode(frag)
-
-                    if (lastNode) {
-                        range = range.cloneRange()
-                        range.setStartAfter(lastNode)
-                        range.collapse(false)
-                        sel.removeAllRanges()
-                        sel.addRange(range)
-                    }
-                }
-            }
-
-        }).on('dragover', function (event) {
-            var e = event || window.event
-            e.preventDefault ? e.preventDefault() : e.returnValue = false
-
-        }).on('dragenter', function (event) {
-            var e = event || window.event
-            e.preventDefault ? e.preventDefault() : e.returnValue = false;
-        });
-    }
-    window.imgBase = Base;
+    UM.Editor.prototype.imageUploader = Upload
 })();

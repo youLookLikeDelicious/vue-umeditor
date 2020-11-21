@@ -4,13 +4,13 @@ import './static/plugins/umeditor/third-party/imgPreview.js'
 import './static/plugins/umeditor/template'
 import './static/plugins/umeditor/umeditor.config.js'
 import './static/plugins/umeditor/umeditor.min.js'
+import './static/plugins/umeditor/commands/preview.js'
 import './static/plugins/umeditor/lang/zh-cn/zh-cn.js'
-
-import './static/plugins/umeditor/dialogs/formula/mathquill.css'
+import './static/plugins/umeditor/lang/en/en.js'
 
 import './static/style/icofont.min.css'
 import './static/plugins/umeditor/dialogs/formula/mathquill.min'
-
+import './static/plugins/umeditor/dialogs/formula/formula.css'
 var MQ = MathQuill.getInterface(2);
 window.MQ = MQ
 

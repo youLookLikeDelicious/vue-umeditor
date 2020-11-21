@@ -1,6 +1,6 @@
 {
   "name": "@blog1997/vue-umeditor",
-  "version": "0.0.11-beta",
+  "version": "0.1.1-beta",
   "description": "rich text editor,formula editor,embed map",
   "main": "src/index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "@vue/test-utils": "^1.0.0-beta.33",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^6.1.1",
     "copy-webpack-plugin": "^5.1.1",
     "core-js": "^3.6.5",
     "coveralls": "^3.1.0",
@@ -55,6 +56,7 @@
     "vue-router": "^3.4.3",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.0",
+    "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
