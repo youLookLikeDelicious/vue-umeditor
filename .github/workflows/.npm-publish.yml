@@ -1,7 +1,10 @@
 name: npm-publish
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
+    tags:
+      - Release*
 jobs:
   npm-publish:
     name: npm-publish

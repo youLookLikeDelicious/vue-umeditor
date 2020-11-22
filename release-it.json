@@ -1,6 +1,8 @@
 {
   "git": {
-    "commitMessage": "release: v${version}"
+    "commitMessage": "release: v${version}",
+    "requireBranch": "master",
+    "tagName": "Release ${version}"
   },
   "npm": {
     "publish": false
@@ -8,5 +10,10 @@
   "github": {
     "release": true,
     "releaseNotes": "generate-release-notes.sh ${latestVersion} ${version}"
+  },
+  "plugins": {
+    "@release-it/keep-a-changelog": {
+      "filename": "CHANGELOG.md"
+    }
   }
 }
