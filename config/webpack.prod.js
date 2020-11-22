@@ -11,7 +11,8 @@ module.exports = merge(common, {
     //   test: /\.js$|\.css$|\.html$/,
     // }),
     new BundleAnalyzerPlugin({
-      generateStatsFile: true
+      generateStatsFile: true,
+      analyzerMode: 'static'
     }),
   ]
 })

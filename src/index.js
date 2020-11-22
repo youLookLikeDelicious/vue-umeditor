@@ -55,5 +55,5 @@ const VueUmeditor = {
         Vue.component('umeditor', component)
     }
 }
-
+window.VueUmeditor = VueUmeditor
 export default VueUmeditor
