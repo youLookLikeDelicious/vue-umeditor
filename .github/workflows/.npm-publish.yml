@@ -2,7 +2,7 @@ name: npm-publish
 on:
   push:
     tags:
-      - [0-9]+.[0-9]+.[0-9]+
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   npm-publish:
@@ -16,9 +16,9 @@ jobs:
       with:
         node-version: 12.0.0
     - name: Publish if version has been updated
-      run: npm install
-      run: npm run build
-      run: npm run publish
+    - run: npm install
+    - run: npm run build
+    - run: npm run publish
       env: # More info about the environment variables in the README
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # You need to set this in your repo settings
