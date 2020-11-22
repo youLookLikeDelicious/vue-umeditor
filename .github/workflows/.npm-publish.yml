@@ -1,9 +1,6 @@
 name: npm-publish
 on:
   release:
-    types:
-      - released
-      - published
 jobs:
   npm-publish:
     name: npm-publish
