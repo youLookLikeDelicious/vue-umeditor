@@ -21,8 +21,6 @@ jobs:
       run: git init
     - name: install npm
       run: npm install
-    - name: init-npm
-      run: npm init
     - name: build
       run: npm run build
     - name: publish
