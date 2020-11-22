@@ -1,6 +1,6 @@
 name: npm-publish
 on:
-  released
+  released:
     branches:
       - master
 jobs:
