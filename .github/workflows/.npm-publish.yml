@@ -2,7 +2,7 @@ name: npm-publish
 on:
   push:
     tags:
-      - v[0-9]+.[0-9]+.[0-9]+
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 jobs:
   npm-publish:
     name: npm-publish
@@ -23,9 +23,8 @@ jobs:
         workspace: "."
         publish_command: "npm"
         publish_args: "--non-interactive"
+    - name: build
+    - run: npm run build --if-present
       env: # More info about the environment variables in the README
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # You need to set this in your repo settings
-    steps:
-    - name: build
-    - run: npm run build --if-present
