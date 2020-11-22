@@ -18,7 +18,7 @@ jobs:
     - name: config-npm-registry
       run: npm config set registry http://registry.npmjs.org
     - name: replace-git-remote-url
-      run: git init && remote add origin git@github.com:youLookLikeDelicious/vue-umeditor.git
+      run: git init && git remote add origin git@github.com:youLookLikeDelicious/vue-umeditor.git
     - name: install npm
       run: npm install
     - name: init-npm
