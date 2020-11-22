@@ -15,6 +15,8 @@ jobs:
       uses: actions/setup-node@master
       with:
         node-version: 12.0.0
+    - name: config-npm-registry
+      run: npm config set registry http://registry.npmjs.org
     - name: install npm
       run: npm install
     - name: build
