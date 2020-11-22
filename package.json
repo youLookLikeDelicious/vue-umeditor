@@ -70,5 +70,10 @@
     "branches": [
       "master"
     ]
-  }
+  },
+  "files": [
+    "src",
+    "test.js",
+    "component.js"
+  ]
 }
