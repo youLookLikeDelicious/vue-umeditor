@@ -1,6 +1,6 @@
 {
   "name": "@blog1997/vue-umeditor",
-  "version": "0.1.2-beta",
+  "version": "0.1.1-beta",
   "description": "rich text editor,formula editor,embed map",
   "main": "src/index.js",
   "scripts": {
@@ -63,11 +63,6 @@
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
   },
-  "files": [
-    "src/*",
-    "component.js",
-    "test.js"
-  ],
   "dependencies": {
     "jquery": "^3.5.1"
   },
@@ -75,8 +70,5 @@
     "branches": [
       "master"
     ]
-  },
-  "wallaby": {
-    "slowTestThreshold": 200
   }
 }
