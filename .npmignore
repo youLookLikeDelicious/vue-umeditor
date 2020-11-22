@@ -1,0 +1,6 @@
+.github/
+.circleci/
+config/
+dev/
+node_modules/
+.coveralls.yml

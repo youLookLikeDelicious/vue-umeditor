@@ -1,13 +1,14 @@
 {
   "name": "@blog1997/vue-umeditor",
-  "version": "0.1.1-beta",
+  "version": "0.1.2-beta",
   "description": "rich text editor,formula editor,embed map",
   "main": "src/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
     "test": "mocha",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "nodeunit": "^0.11.3",
     "nyc": "^15.0.1",
     "raw-loader": "^4.0.0",
+    "release-it": "^14.2.1",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
