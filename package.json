@@ -1,6 +1,6 @@
 {
   "name": "@blog1997/vue-umeditor",
-  "version": "0.1.4",
+  "version": "0.1.2",
   "description": "rich text editor,formula editor,embed map",
   "main": "src/index.js",
   "scripts": {
