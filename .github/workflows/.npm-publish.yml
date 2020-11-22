@@ -14,17 +14,13 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@master
       with:
-        node-version: 12.0.0
-    - name: config-npm-registry
-      run: npm config set registry http://registry.npmjs.org
-    - name: replace-git-remote-url
-      run: git init
+        node-version: 12.*
     - name: install npm
       run: npm install
     - name: build
       run: npm run build
-    - name: publish
-      run: npm publish --access public
+    - name: Publish if version has been updated
+      uses: pascalgn/npm-publish-action@1.3.4
       env: # More info about the environment variables in the README
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # You need to set this in your repo settings
