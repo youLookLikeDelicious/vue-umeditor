@@ -3,6 +3,7 @@
 [![license](https://img.shields.io/github/license/youLookLikeDelicious/vue-umeditor)](https://github.com/youLookLikeDelicious/vue-umeditor/blob/master/LICENSE.md)
 ![javascript](https://img.shields.io/github/languages/top/youLookLIkeDelicious/vue-umeditor)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/youLookLikeDelicious/vue-umeditor/npm-publish)
+![GitHub code size](https://img.shields.io/github/languages/code-size/youLookLikeDelicious/vue-umeditor)
 
 1. vue + UMeditor(ueditor迷你版本)
 
