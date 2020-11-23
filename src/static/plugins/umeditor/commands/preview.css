@@ -5,18 +5,20 @@
     top: 0;
     z-index: 9999;
     box-sizing: border-box;
-    background-color: rgba(rgb(222, 246, 255), .7);
+    background-color: rgba(222,246,255, 0.7);
 }
 .umeditor-preview-box .umeditor-preview{
     width: 98%;
-    height: 98%;
+    height: 95%;
     max-width: 1200px;
     margin: 12px auto;
-    padding: 12px 20px;
+    padding: 24px 20px;
     box-sizing: border-box;
     background-color: #fff;
     border: 1px solid #c6c6c6;
     top: 1%;
+    word-wrap: break-word;
+    overflow-y: auto;
 }
 
 .umeditor-preview-box .umeditor-preview-header{
