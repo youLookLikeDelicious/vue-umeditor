@@ -3,7 +3,7 @@
     "commitMessage": "Release: v${version}",
     "requireBranch": "master",
     "tagName": "${version}",
-    "changelog": "npx auto-changelog --stdout --commit-limit false --unreleased --template config/changelog-compact.hbs"
+    "changelog": "npx auto-changelog"
   },
   "npm": {
     "publish": false
