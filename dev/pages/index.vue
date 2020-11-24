@@ -10,7 +10,6 @@
             this.editor = um;
           }
         "
-        @before-init="beforeInit"
         baiduMapAk="IaNYeZtR3jsoZhA9cH7EOAZQ4Ynp2KT7"
         :lang="lang"
         :upload-url="'http://baidu.com'"
@@ -34,7 +33,6 @@
 
 <script>
 
-import {initFormula, initMap} from '../src/'
 export default {
   data() {
     return {
@@ -42,9 +40,9 @@ export default {
       editor2: "",
       lang: "zh-cn",
       rendereditor: true,
-      content: "<span class='mathquill-embedded-latex'>\\frac{1}{2}</span>",
+      // content: '<p><span class="mathquill-embedded-latex" style="width: 29.2344px; height: 48.2812px;">\\frac{2}{2}</span></p>',
       // content: "<p>vue umeditor<span class='mathquill-embedded-latex'>\frac{1}{2}</span><span class='mathquill-embedded-latex'>\\frac{1}{12}</span></p>" + '<iframe class="ueditor_baidumap" _src="about:blank;?#center=116.404,39.915&zoom=10&width=530&height=340&markers=116.404,39.915" frameborder="0" style="width: 550px; height: 340px; overflow: hidden;"></iframe>',
-      // content: '<span class="mathquill-embedded-latex" style="width: 29.2344px; height: 48.2812px;">\frac{ }{ }</span>'
+      content: '<span class="mathquill-embedded-latex" style="width: 29.2344px; height: 48.2812px;">\\frac{ }{ }</span>'
     };
   },
   methods: {
@@ -140,7 +138,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.editor)
+    // console.log(this.editor)
   },
 };
 </script>

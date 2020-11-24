@@ -124,9 +124,9 @@ export default {
             //实例化编辑器
             this.UM = UM.getEditor(this.umId, this.umConfig)
 
-
             if (this.$attrs.value) {
                 this.UM.setContent(this.$attrs.value)
+                this.UM.execCommand('inserthtml', '')
             }
             this.afterInit()
         }
@@ -135,15 +135,14 @@ export default {
         this.init()
     },
     beforeDestroy() {
-        this.syncContent()
-        this.UM.removeListener('contentChange', this.contentChangeHandler);
-
         this.UM.destroy()
+        this.UM = ''
     },
     destroyed() {
         try {
             const el = document.getElementById(this.umId)
             el.parentElement.removeChild(el)
-        } catch (e) {}
+        } catch (e) {
+        }
     }
 }

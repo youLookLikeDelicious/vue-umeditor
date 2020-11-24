@@ -140,7 +140,6 @@ module.exports = {
         // contentBase: path.resolve('../src/static'),
         // compress: true,
         // port: 8080,
-        disableHostCheck: true
     },
     // 定义变量
     resolve: {

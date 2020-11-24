@@ -229,7 +229,9 @@ function formulaTemplate () {
  * @param iframe
  */
 function initFormulaTemplate (iframe) {
-
+    if (!iframe) {
+        return
+    }
     const doc = iframe.contentWindow.document || iframe.contentDocument
 
     // 表示已经初始化
