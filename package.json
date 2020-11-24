@@ -8,7 +8,8 @@
     "build": "webpack --config ./config/webpack.prod.js",
     "test": "mocha",
     "coverage": "nyc npm run test",
-    "release": "release-it"
+    "release": "release-it",
+    "version": "npx auto-changelog --stdout --commit-limit false --unreleased --template config/changelog-compact.hbs"
   },
   "repository": {
     "type": "git",
