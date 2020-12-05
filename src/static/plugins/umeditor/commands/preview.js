@@ -7,11 +7,10 @@ UM.commands.preview = {
             previewBox = $('<div class="umeditor-preview-box"><div class="umeditor-preview"></div></div>'),
             template = '<header class="umeditor-preview-header"><span>'+ title +'</span><span class="umeditor-preview-close-btn">X</span></header>' + this.getContent()
 
-        console.log(previewBox.children())
         previewBox.find('.umeditor-preview').html(template)
         previewBox.appendTo(document.body)
         
-        $('iframe', '.umeditor-preview-box').each(function(index, iframe) {
+        $('iframe', '.ueditor_baidumap').each(function(index, iframe) {
             initBaiduMapIframe(iframe)
         })
 

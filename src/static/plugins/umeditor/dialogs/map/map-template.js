@@ -181,5 +181,9 @@ export default function (iframe) {
     doc.write(getMapTemplate(parent.document.location.protocol))
     doc.close()
     
-    iframe.className += ' map-has-active'
+    if (iframe.className) {
+        iframe.className += ' map-has-active'
+    } else {
+        iframe.className = 'map-has-active'
+    }
 }
