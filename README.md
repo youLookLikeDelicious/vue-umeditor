@@ -24,11 +24,17 @@ Firebox
 *其他关于umeditor的操作请参考[官方文档 (挂掉了)](http://ueditor.baidu.com/website/umeditor.html)*
 
 #### 安装
+##### 使用npm
 ```bash
 npm install raw-loader --save-dev
 npm install '@blog1997/vue-umeditor' --save
 ```
-
+```javascript
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@blog1997/vue-umeditor@latest/dist/main.bundle.js">
+  </script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@blog1997/vue-umeditor@latest/dist/vendors~main.bundle.js"></script>
+```
 #### 使用
 ```javascript
 import editor from '@blog1997/vue-umeditor'
