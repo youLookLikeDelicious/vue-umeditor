@@ -318,7 +318,7 @@ etpl.config({
             hr: ['style', 'class', 'id'],
             i: ['style', 'class', 'id'],
             iframe: ['style', 'class', 'id', 'src', '_src', 'frameborder', 'allowfullscreen', 'data-latex', 'srcdoc'],
-            img: ['src', 'alt', 'title', 'width', 'height', 'style', 'class', 'id', '_url'],
+            img: ['src', 'alt', 'data-src', 'title', 'width', 'height', 'style', 'class', 'id', '_url'],
             ins: ['datetime', 'style', 'class', 'id'],
             li: ['style', 'class', 'id'],
             mark: [],

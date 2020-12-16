@@ -42,7 +42,7 @@ export default {
       rendereditor: true,
       // content: '<p><span class="mathquill-embedded-latex" style="width: 29.2344px; height: 48.2812px;">\\frac{2}{2}</span></p>',
       // content: "<p>vue umeditor<span class='mathquill-embedded-latex'>\frac{1}{2}</span><span class='mathquill-embedded-latex'>\\frac{1}{12}</span></p>" + '<iframe class="ueditor_baidumap" _src="about:blank;?#center=116.404,39.915&zoom=10&width=530&height=340&markers=116.404,39.915" frameborder="0" style="width: 550px; height: 340px; overflow: hidden;"></iframe>',
-      content: '<span class="mathquill-embedded-latex" style="width: 29.2344px; height: 48.2812px;">\\frac{ }{ }</span>'
+      content: '<span class="mathquill-embedded-latex" style="width: 29.2344px; height: 48.2812px;">\\frac{ }{ }</span><img data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1608144854091&di=e8672f16ccfc11de3cb9e73932706bf3&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F27%2F67%2F01300000921826141299672233506.jpg">'
     };
   },
   methods: {
