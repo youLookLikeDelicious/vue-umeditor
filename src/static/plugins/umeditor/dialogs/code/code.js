@@ -119,8 +119,9 @@ import './code.css'
 		if(!html) return;
 		// 获取代码的类型
 		this.type = this.type? this.type : $w.find('select option:selected')[0].text;
-		html = '<pre><code class="'+this.type+'">'+ html + ' \n' + '</code></pre>';
-		editor.execCommand('insertHTML', html, true);
+		html = html.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+		html = '<pre class="'+this.type+'">'+ html + ' \n' + '</pre>';
+		editor.execCommand('insertHtml', html, !0);
 	}
 }
 UM.registerWidget('code', {
@@ -156,8 +157,6 @@ UM.registerWidget('code', {
 		if (lang) {
 			var html = $.parseTmpl(this.tpl, opt);
 		}
-		
-		// currentDialog = $dialog.edui();
 
 		this.root().html(html);
 	},
@@ -183,4 +182,27 @@ UM.registerWidget('code', {
 	width: 520,
 	height: 408
 });
+
+UM.plugins.code = function() {
+	/**
+	 * 添加输入规则
+	 * 
+	 * @param {UM.uNode} rootNode
+	 * @return {void}
+	 */
+	this.addOutputRule(function (rootNode) {
+		let _this = this
+		/**
+		 * @param {int} index
+		 * @param {UM.uNode} node
+		 */
+		$.each(rootNode.getNodesByTagName('pre'), function (index, node) {
+			// console.log(UM.utils.html(node.innerText()))
+			// node.innerText(UM.utils.html(node.innerText()))
+			let content = node.innerText().replace(/&nbsp;/g, ' ')
+			node.innerText(UM.utils.html(content))
+			node.toHtml(true)
+		})
+	})
+}
 })();

@@ -296,12 +296,13 @@ etpl.config({
             center: [],
             cite: [],
             code: ['style', 'class', 'id'],
+            xmp: [],
             col: ['align', 'valign', 'span', 'width', 'style', 'class', 'id'],
             colgroup: ['align', 'valign', 'span', 'width', 'style', 'class', 'id'],
             dd: ['style', 'class', 'id'],
             del: ['datetime', 'style', 'class', 'id'],
             details: ['open', 'style', 'class', 'id'],
-            div: ['style', 'class', 'id'],
+            div: ['style', 'class', 'id', 'v-html'],
             dl: ['style', 'class', 'id'],
             dt: ['style', 'class', 'id'],
             em: ['style', 'class', 'id'],
@@ -325,7 +326,7 @@ etpl.config({
             nav: [],
             ol: ['style', 'class', 'id'],
             p: ['style', 'class', 'id'],
-            pre: ['style', 'class', 'id'],
+            pre: ['style', 'class', 'id', 'innerHTML'],
             s: [],
             section: [],
             small: ['style', 'class', 'id'],
@@ -344,7 +345,9 @@ etpl.config({
             u: [],
             ul: ['style', 'class', 'id'],
             svg: ['style', 'class', 'id', 'width', 'height', 'xmlns', 'fill', 'viewBox'],
-            video: ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'style', 'class', 'id']
+            video: ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'style', 'class', 'id'],
+            template: ['style'],
+            style: ['lang'],
         }
     };
 })();

@@ -5,6 +5,7 @@
       <umeditor
         v-if="rendereditor"
         v-model="content"
+        @before-init="beforeInit"
         @receiveUM="
           (um) => {
             this.editor = um;
