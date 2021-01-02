@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="bind-data" v-html="content"></div>
+    <div class="bind-data" v-html="content" contenteditable="true" @input="setContent"></div>
     <div>
       <umeditor
         v-if="rendereditor"
@@ -132,6 +132,13 @@ export default {
       // 默认载入自定义的 菜单
       UMEDITOR_CONFIG.toolbar.push("save");
     },
+    /**
+     * 编辑当前组件的 content 的值
+     */
+    setContent(event) {
+      console.log(event.target.innerHTML)
+      this.content = event.target.innerHTML
+    }
   },
   computed: {
     html() {

@@ -48,7 +48,15 @@ export default {
         return {
             umId: 'um_editor_' + (Math.random().toFixed(3)).toString().replace('.', '_'),
             UM: undefined, // UM对象
-            umConfig: {}
+            umConfig: {},
+            content: ''
+        }
+    },
+    watch: {
+        '$attrs.value'() {
+            if (this.content !== this.$attrs.value) {
+                this.setEditorContent(this.$attrs.value)
+            }
         }
     },
     render(h) {
@@ -78,7 +86,15 @@ export default {
          * @param {string} content 
          */
         syncContent(content = '') {
+            this.content = content
             this.$emit('input', content)
+        },
+        /**
+         * 设置富文本的内容
+         * @param {string}} content 
+         */
+        setEditorContent(content) {
+            this.UM.setContent(content)
         },
         /**
          * 初始化配置信息
@@ -142,7 +158,6 @@ export default {
         try {
             const el = document.getElementById(this.umId)
             el.parentElement.removeChild(el)
-        } catch (e) {
-        }
+        } catch (e) {}
     }
 }
